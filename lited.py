@@ -5,6 +5,7 @@ import pyfiglet as fig
 import socket as socks
 from cd import Modulss
 from cd import Login
+import requests
 
 class Colors:
    PURPLE = '\033[95m'
@@ -20,13 +21,14 @@ class Colors:
 logo = fig.figlet_format('     T O O L S')
 print(logo)
 print("                             "+Modulss.usr+"\n")
-   
+
 print("[1] Check system")
 print("[2] Scan ip address")
 print("[3] Denial of service")
+print("[4] Inject website code")
 try:
   select_items = int(input("Select> "))
-  
+
   if select_items == 1:
     count.sleep(2)
     print("[*] Payload...")
@@ -35,7 +37,7 @@ try:
     count.sleep(2)
     print("[*] Show System...")
     count.sleep(2)
-  
+
     checking = str(input("Are you sure want to continue Y/N "))
     count.sleep(2)
     if checking == 'y':
@@ -66,9 +68,14 @@ try:
       print("Sending packet: ",url_target,randoms)
     else:
       exit()
-  elif select_items > 3:
+  elif select_items > 4:
     print("Not found!")
-  elif select_items != cq:
-    print('Not found')
+  elif select_items == 4:
+    try:
+     urls = input("Target: ")
+     scanning_url = requests.get(urls)
+     print(scanning_url.text)
+    except:
+      print("Host only")
 except:
   exit()
